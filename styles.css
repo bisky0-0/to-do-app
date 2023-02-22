@@ -6,6 +6,14 @@
 
 /*form styling*/
 
+
+#start-page, #content, #radio-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-flow: row;
+}
+
 #form-header{
     position: relative;
     color: #000084;
@@ -34,34 +42,49 @@
 }
 
 label{
-    width: 80%;
+    width: 90%;
     text-align: center;
     perspective: 150px;
     perspective-origin: center; 
 }
 
+#radio-container{
+    margin-top: 30px;
+    width: 90%;
+    justify-content:space-evenly;
+
+}
+
+#radio-container>label{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    height: 40px;
+    border-radius: 10px;
+}
+
 input[type="text"], input[type="email"]{
     width: 100%;
     height: 40px;
-    margin: 10px;
+    margin: 10px 0;
     padding: 5px 10px;
     outline: none;
     border: none;
     border-radius: 10px;
 }
 
-.gender-label{
-    text-align: left;
-    padding: 10px 10px  0 10px;
-}
 
 input[type="radio"]{
     width: 18px;
     height: 18px;
-    margin: -3.5px 10px 0 0;
+    margin: 0px 10px 0 0;
     vertical-align: middle;
     cursor: pointer;
 }
+
+
 
 input[type="text"]:focus, input[type="email"]:focus{
     border-bottom: 1px solid #000084;
@@ -114,29 +137,23 @@ label>span{
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
-}
-
-#start-page, #content{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-flow: row;
+    background-image: linear-gradient(-180deg, #fff, #a9ffff);
 }
 
 #content{
     width: 45%;
     min-height: 100%;
     height:fit-content;
-    background-image: linear-gradient(-180deg, #fff, #a9ffff);
+    background-image: #fff;
     flex-flow: column;
     padding: 70px 0;
 }
 #pic-container{
     width: 55%;
     height: 100%;
-    background-image: url('./images/41.jpg');
+    background-image: linear-gradient(-180deg, #ffffff57, #a9ffffcf),url('./images/41.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: top;
 }
 
 .h1{
@@ -172,6 +189,11 @@ label>span{
         font-size: 2rem;
     }
 
+    #form{
+        background-color: unset;
+        border-radius: 0%;
+    }
+
 
 label{
     width: 100%;
@@ -190,7 +212,7 @@ input[type="text"], input[type="email"]{
     #content{
         width: 100%;
         justify-content: flex-start;
-        padding: 100px 0 0 0;
+        padding: 100px 0 50px 0;
     }
 
     #pic-container{
