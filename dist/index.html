@@ -16,23 +16,25 @@
             <h1 class="h1" id="form-header">welcome to doIt</h1>
             <form action="_blank" id="form">
                 <label for="first-name">
-                    <input type="text" name="first-name" id="first-name" placeholder="First Name">
+                    <input type="text" name="first-name" id="first-name" placeholder="First Name" required>
                 </label>
 
                 <label for="last-name">
-                    <input type="text" name="last-name" id="last-name" placeholder="Last Name">
+                    <input type="text" name="last-name" id="last-name" placeholder="Last Name" required>
                 </label>
 
                 <label for="email">
-                    <input type="email" name="email" id="email" placeholder="Your Email">
+                    <input type="email" name="email" id="email" placeholder="Your Email" required>
                 </label>
 
-                <label for="gender" class="gender-label">
-                    <input type="radio" name="gender" id="male" value="male"><span>male</span>
-                </label>
-                <label for="gender" class="gender-label">
-                    <input type="radio" name="gender" id="female" value="female"><span>female</span>
-                </label>
+                <div id="radio-container">
+                    <label for="gender" class="gender-label">
+                        <input type="radio" name="gender" id="male" value="male" required><span>male</span>
+                    </label>
+                    <label for="gender" class="gender-label">
+                        <input type="radio" name="gender" id="female" value="female" required><span>female</span>
+                    </label>
+                </div>
 
                 <button type="submit" id="submit">Submit</button>
             </form>
