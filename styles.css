@@ -28,7 +28,7 @@
     flex-flow: column;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 50px;
+    padding: 50px 0 50px 0;
     color: #000084;
     border-bottom: 1px solid #000084;
 }
@@ -167,7 +167,7 @@ label>span{
 
 
 label{
-    width: 95%;
+    width: 100%;
     text-align: center;
     perspective: 150px;
     perspective-origin: center; 
@@ -176,7 +176,7 @@ label{
 
 input[type="text"], input[type="email"]{
     height: 50px;
-    margin-top: 13px;
+    margin: 20px 0 0 0;
 }
 
 
