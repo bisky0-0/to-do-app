@@ -176,7 +176,7 @@ label{
 
 input[type="text"], input[type="email"]{
     height: 50px;
-    margin: 13px;
+    margin-top: 13px;
 }
 
 
