@@ -29,6 +29,8 @@
     align-items: center;
     justify-content: space-between;
     padding-bottom: 50px;
+    color: #000084;
+    border-bottom: 1px solid #000084;
 }
 
 label{
@@ -71,7 +73,7 @@ label>span{
 }
 
 #submit{
-    width: 170px;
+    width: 180px;
     height: 40px;
     font-size: 1.4rem;
     background-color: #000084;
@@ -162,6 +164,21 @@ label>span{
 }
 
 @media (max-width: 1200px) {
+
+
+label{
+    width: 95%;
+    text-align: center;
+    perspective: 150px;
+    perspective-origin: center; 
+}
+
+
+input[type="text"], input[type="email"]{
+    height: 50px;
+    margin: 13px;
+}
+
 
     #content{
         width: 100%;
