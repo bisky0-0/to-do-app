@@ -7,7 +7,7 @@
 /*form styling*/
 
 #form-header{
-    margin-top: 15px;
+    margin-top: 20px;
     position: relative;
     color: #000084;
 }
@@ -112,6 +112,7 @@ label>span{
 
 
 #start-page{
+    height: 100vh;
     min-height: 100vh;
     width: 100vw;
 }
