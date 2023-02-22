@@ -7,7 +7,6 @@
 /*form styling*/
 
 #form-header{
-    margin-top: 50px;
     position: relative;
     color: #000084;
 }
@@ -112,9 +111,9 @@ label>span{
 
 
 #start-page{
+    width: 100vw;
     height: 100vh;
     min-height: 100vh;
-    width: 100vw;
 }
 
 #start-page, #content{
@@ -126,9 +125,11 @@ label>span{
 
 #content{
     width: 45%;
-    height: 100%;
+    min-height: 100%;
+    height:fit-content;
     background-image: linear-gradient(-180deg, #fff, #a9ffff);
     flex-flow: column;
+    padding: 70px 0;
 }
 #pic-container{
     width: 55%;
@@ -167,6 +168,10 @@ label>span{
 
 @media (max-width: 1200px) {
 
+    .h1{
+        font-size: 2rem;
+    }
+
 
 label{
     width: 100%;
@@ -184,6 +189,8 @@ input[type="text"], input[type="email"]{
 
     #content{
         width: 100%;
+        justify-content: flex-start;
+        padding: 100px 0 0 0;
     }
 
     #pic-container{
