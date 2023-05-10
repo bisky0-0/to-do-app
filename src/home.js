@@ -124,6 +124,7 @@ function projectGenerator() {
         projectsArray.push(new TemplateProject(`./icons/briefcase-solid.svg`, 'work', 'work', `Don’t let yesterday take up too much of today. Use work template now!`))
         projectsArray.push(new TemplateProject(`./icons/phone-solid.svg`, 'calls', 'home', `Arrange your phone calls so you don't forget any of them`))
         storageModule.populateData('projectsArray', projectsArray)
+        loclstrgProjects = storageModule.setArrayData('projectsArray')
     }
     for (let j = 0; j < loclstrgProjects.length; j++) {
         let project = document.createElement('div');
@@ -224,11 +225,21 @@ export function addTask() {
             let currentDay = format(currentDate, "yyyy-LL-dd")
             let allArray = setArrayData('AlltasksArray')
 
+            function checkLocalStorage(newTask) {
+                if (localStorage.getItem('AlltasksArray')) {
+                    allArray.push(newTask);
+                    populateData("AlltasksArray", allArray);
+                }
+                else {
+                    storageModule.AlltasksArray.push(newTask)
+                    populateData("AlltasksArray", storageModule.AlltasksArray)
+                }
+            }
+
             if (taskDate.value == currentDay) {
                 console.log('today')
                 let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'today', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false);
-                allArray.push(newTask);
-                populateData("AlltasksArray", allArray);
+                checkLocalStorage(newTask)
                 console.log(setArrayData('AlltasksArray'))
             }
 
@@ -236,16 +247,15 @@ export function addTask() {
             else if (currentWeek.includes(taskDate.value)) {
                 console.log('this week')
                 let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false)
-                allArray.push(newTask);
-                populateData("AlltasksArray", allArray);
+                checkLocalStorage(newTask)
+
                 console.log(setArrayData('AlltasksArray'))
             }
 
             else {
                 console.log('all')
                 let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks'], taskProject.value, taskTag.value, taskNote.value, false, false)
-                allArray.push(newTask);
-                populateData("AlltasksArray", allArray);
+                checkLocalStorage(newTask)
                 console.log(setArrayData('AlltasksArray'))
             }
 
