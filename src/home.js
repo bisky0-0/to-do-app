@@ -331,12 +331,14 @@ export function taskGenerator(container, prop, condetion) {
 
 
 function thisWeek() {
-    storageModule.deleteTask(setArrayData('AlltasksArray'))
-    console.log(setArrayData('AlltasksArray'))
-    let container = document.createElement('div');
-    document.getElementById('home-page').textContent = '';
-    document.getElementById('home-page').appendChild(container).setAttribute('id', "week-page");
-    taskGenerator(container, 'section', 'this week')
+    if (localStorage.getItem('AlltasksArray')) {
+        storageModule.deleteTask(setArrayData('AlltasksArray'))
+        console.log(setArrayData('AlltasksArray'))
+        let container = document.createElement('div');
+        document.getElementById('home-page').textContent = '';
+        document.getElementById('home-page').appendChild(container).setAttribute('id', "week-page");
+        taskGenerator(container, 'section', 'this week')
+    }
 }
 
 
@@ -344,10 +346,12 @@ function thisWeek() {
 
 
 function allTasksGanerator() {
-    storageModule.deleteTask(setArrayData('AlltasksArray'))
-    let container = document.createElement('div');
-    document.getElementById('home-page').textContent = '';
-    document.getElementById('home-page').appendChild(container).setAttribute('id', "all-tasks-page");
-    taskGenerator(container, 'section', 'all tasks')
+    if (localStorage.getItem('AlltasksArray')) {
+        storageModule.deleteTask(setArrayData('AlltasksArray'))
+        let container = document.createElement('div');
+        document.getElementById('home-page').textContent = '';
+        document.getElementById('home-page').appendChild(container).setAttribute('id', "all-tasks-page");
+        taskGenerator(container, 'section', 'all tasks')
+    }
 }
 
