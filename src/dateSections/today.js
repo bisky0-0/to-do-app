@@ -5,7 +5,6 @@ import { deleteTask, setArrayData } from "./storage";
 
 
 export function today() {
-    deleteTask(setArrayData('AlltasksArray'))
     let currentDate = new Date();
     let homePage = document.getElementById('home-page');
     let todaySection = document.createElement('div');
@@ -24,12 +23,16 @@ export function today() {
 
     addTask();
     //svg icon
-    currentDate.getHours() > 12 && currentDate.getHours() < 3 ? todayHeading.textContent = `good afternoon, yasmein` :
-        currentDate.getHours() > 13 && currentDate.getHours() < 24 ? todayHeading.textContent = `good evening, yasmein` : todayHeading.textContent = `good morning, yasmein`
+    let userName = localStorage.getItem("fName")
+    currentDate.getHours() > 12 && currentDate.getHours() < 3 ? todayHeading.textContent = `good afternoon, ${userName}` :
+        currentDate.getHours() > 13 && currentDate.getHours() < 24 ? todayHeading.textContent = `good evening, ${userName}` : todayHeading.textContent = `good morning, ${userName}`
     todayDate.textContent = format(currentDate, 'iii-LLL-dd');
 
-    taskGenerator(todayTasks, 'section', 'today');
-    // deleteTask()
-    console.log(setArrayData('AlltasksArray'))
+    if (localStorage.getItem('AlltasksArray')) {
+        deleteTask(setArrayData('AlltasksArray'))
+        taskGenerator(todayTasks, 'section', 'today');
+        // deleteTask()
+        console.log(setArrayData('AlltasksArray'))
+    }
     // populateData('todayTasksArray', todayTasksArray)
 }
