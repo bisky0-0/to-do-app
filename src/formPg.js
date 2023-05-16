@@ -9,7 +9,7 @@ export function form() {
     document.body.textContent = '';
     header()
     let formPage = document.createElement('div');
-    let picContainer = document.createElement('div');
+    let picContainer = document.createElement('img');
     let content = document.createElement('div');
     let formHeader = document.createElement('h1');
 
@@ -19,7 +19,7 @@ export function form() {
 
 
     content.appendChild(formHeader).setAttribute('id', 'form-header');
-    content.appendChild(picContainer).setAttribute('id', 'form-pic')
+    content.appendChild(picContainer).setAttribute('src', './images/2206_w039_n003_266b_p1_266.jpg')
 
     formHeader.textContent = 'welcome to DOIT';
 

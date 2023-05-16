@@ -2,25 +2,25 @@ import { header } from "./start";
 import { TemplateProject, populateData, setArrayData } from "./dateSections/storage";
 import { home } from "./home";
 
-let templatesArray = [new TemplateProject(`./icons/bath-solid.svg`, 'Personal hygiene', 'home', `If you don't smell good, then you don't look good`),
-new TemplateProject(`./icons/book-open-reader-solid.svg`, 'reading', 'hobbies', `Carry your book(s) everywhere. There's always an opportunity to read`),
-new TemplateProject(`./icons/briefcase-solid.svg`, 'work', 'work', `Don’t let yesterday take up too much of today. Use work template now!`),
-new TemplateProject(`./icons/building-columns-solid.svg`, 'financial tasks', 'personal activities', `Manage your financial tasks today. Time has value in your money`),
-new TemplateProject(`./icons/cart-shopping-solid.svg`, 'shopping', 'home', 'This template helps you not to forget the things you need to buy. Try it now!'),
-new TemplateProject(`./icons/children-solid.svg`, 'family', 'home', `Spend more time with your family, it helps you feel better about everything`),
-new TemplateProject(`./icons/dumbbell-solid.svg`, 'fitness', 'personal activities', 'Stay healthy by adding your favorite exercises to your daily to-do list.'),
-new TemplateProject(`./icons/graduation-cap-solid.svg`, 'studying', 'education', `Studying is one of your top priorities today. Organize your time for it now`),
-new TemplateProject(`./icons/handshake-solid.svg`, 'meetings', 'work', `Take care of your interviews and organize your ideas for them before you begin. to make the best impression`),
-new TemplateProject(`./icons/heart-pulse-solid.svg`, 'health', 'personnal activities', `the perfect mind in healthy body. Put your healthy steps into your tasks today`),
-new TemplateProject(`./icons/heart-solid.svg`, 'your relations', 'personnal activities', `Your relationships in life have an impact on your daily productivity. Try to make it better`),
-new TemplateProject(`./icons/money-bill-trend-up-solid.svg`, 'investments', 'personal activities', `Arrange your investment times according to the market to get the highest profit and the safest decisions`),
-new TemplateProject(`./icons/palette-solid.svg`, 'art', 'hobbies', `Give time to your imagination to be creative and add beauty to your day`),
-new TemplateProject(`./icons/person-walking-solid.svg`, 'sports', 'hobbies', 'Start your day with exercise to get the energy needed to perform your other tasks'),
-new TemplateProject(`./icons/phone-solid.svg`, 'calls', 'home', `Arrange your phone calls so you don't forget any of them`),
-new TemplateProject(`./icons/plane-solid.svg`, 'travel', 'hobbies', `Arrange your trips according to your time and work`),
-new TemplateProject(`./icons/seedling-solid.svg`, 'planting', 'home', `Green gives you inspiration. Take care of your plants now`),
-new TemplateProject(`./icons/utensils-solid.svg`, 'cooking', 'home', `Make your own meals to be healthier. I believe your food tastes great`),
-new TemplateProject(`./icons/volleyball-solid.svg`, 'sports', 'hobbies', `Playing sports daily helps you to be in good health and a better condition`),
+let templatesArray = [new TemplateProject(`./icons/bath-solid.svg`, 'Personal hygiene', 'home', `If you don't smell good, then you don't look good`, false),
+new TemplateProject(`./icons/book-open-reader-solid.svg`, 'reading', 'hobbies', `Carry your book(s) everywhere. There's always an opportunity to read`, false),
+new TemplateProject(`./icons/briefcase-solid.svg`, 'work', 'work', `Don’t let yesterday take up too much of today. Use work template now!`, false),
+new TemplateProject(`./icons/building-columns-solid.svg`, 'financial tasks', 'personal activities', `Manage your financial tasks today. Time has value in your money`, false),
+new TemplateProject(`./icons/cart-shopping-solid.svg`, 'shopping', 'home', 'This template helps you not to forget the things you need to buy. Try it now!', false),
+new TemplateProject(`./icons/children-solid.svg`, 'family', 'home', `Spend more time with your family, it helps you feel better about everything`, false),
+new TemplateProject(`./icons/dumbbell-solid.svg`, 'fitness', 'personal activities', 'Stay healthy by adding your favorite exercises to your daily to-do list.', false),
+new TemplateProject(`./icons/graduation-cap-solid.svg`, 'studying', 'education', `Studying is one of your top priorities today. Organize your time for it now`, false),
+new TemplateProject(`./icons/handshake-solid.svg`, 'meetings', 'work', `Take care of your interviews and organize your ideas for them before you begin. to make the best impression`, false),
+new TemplateProject(`./icons/heart-pulse-solid.svg`, 'health', 'personnal activities', `the perfect mind in healthy body. Put your healthy steps into your tasks today`, false),
+new TemplateProject(`./icons/heart-solid.svg`, 'your relations', 'personnal activities', `Your relationships in life have an impact on your daily productivity. Try to make it better`, false),
+new TemplateProject(`./icons/money-bill-trend-up-solid.svg`, 'investments', 'personal activities', `Arrange your investment times according to the market to get the highest profit and the safest decisions`, false),
+new TemplateProject(`./icons/palette-solid.svg`, 'art', 'hobbies', `Give time to your imagination to be creative and add beauty to your day`, false),
+new TemplateProject(`./icons/person-walking-solid.svg`, 'sports', 'hobbies', 'Start your day with exercise to get the energy needed to perform your other tasks', false),
+new TemplateProject(`./icons/phone-solid.svg`, 'calls', 'home', `Arrange your phone calls so you don't forget any of them`, false),
+new TemplateProject(`./icons/plane-solid.svg`, 'travel', 'hobbies', `Arrange your trips according to your time and work`, false),
+new TemplateProject(`./icons/seedling-solid.svg`, 'planting', 'home', `Green gives you inspiration. Take care of your plants now`, false),
+new TemplateProject(`./icons/utensils-solid.svg`, 'cooking', 'home', `Make your own meals to be healthier. I believe your food tastes great`, false),
+new TemplateProject(`./icons/volleyball-solid.svg`, 'sports', 'hobbies', `Playing sports daily helps you to be in good health and a better condition`, false),
 ]
 
 let instructionsArray = ['choose the template you want', 'open projects section in your home page', 'edit, add, remove what you want']
@@ -64,8 +64,8 @@ function templatesStart() {
         text.textContent = instructionsArray[i]
     }
 
-    let secondSection = document.createElement('div');
-    templatesStartPage.appendChild(secondSection).setAttribute('id', 'templates-start-image');
+    let secondSection = document.createElement('img');
+    templatesStartPage.appendChild(secondSection).setAttribute('src', './images/7596.jpg');
 }
 
 
@@ -145,7 +145,7 @@ function templatesSection() {
         templateCard.addEventListener('click', function () {
             let projectsArray = setArrayData('projectsArray')
             document.body.textContent = '';
-            projectsArray.push(new TemplateProject(templatesArray[i].icon, templatesArray[i].name, templatesArray[i].category, templatesArray[i].discription))
+            projectsArray.push(new TemplateProject(templatesArray[i].icon, templatesArray[i].name, templatesArray[i].category, templatesArray[i].discription, templatesArray[i].deleted))
             populateData('projectsArray', projectsArray);
             home();
         })
@@ -222,7 +222,7 @@ function templatesFooter() {
     addingTemplateSec.appendChild(addTempBtn).setAttribute('id', 'add-temp-btn');
     addTempBtn.textContent = 'send it to us';
 
-    let footerPic = document.createElement('div');
-    addingTemplateSec.appendChild(footerPic).setAttribute('id', 'footer-pic');
+    let footerPic = document.createElement('img');
+    addingTemplateSec.appendChild(footerPic).setAttribute('src', './images/6217503.jpg');
 
 }

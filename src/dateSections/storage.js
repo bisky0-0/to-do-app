@@ -25,11 +25,12 @@ export class DayOfWeek {
 
 
 export class TemplateProject {
-    constructor(icon, name, category, discription) {
+    constructor(icon, name, category, discription, deleted) {
         this.icon = icon;
         this.name = name;
         this.category = category;
         this.discription = discription;
+        this.deleted = deleted;
     }
 }
 
@@ -59,9 +60,11 @@ export function weekCalc() {
 
 
 export function setData() {
-    const fName = localStorage.getItem("fName");
-    const lName = localStorage.getItem('lName');
-    document.getElementById('user-name').textContent = `${fName} ${lName}`;
+    if (localStorage.getItem('fName')) {
+        const fName = localStorage.getItem("fName");
+        const lName = localStorage.getItem('lName');
+        document.getElementById('user-name').textContent = `${fName} ${lName}`;
+    }
 }
 
 
@@ -76,15 +79,29 @@ export function setArrayData(arraLocalStorage) {
 }
 
 
-export function deleteTask(array) {
+export function updateArray(item, array) {
     array.forEach((elem) => {
-        console.log("i'm here")
+        // console.log("i'm here")
         if (elem.deleted === true) {
-            console.log('Im deleted')
+            // console.log('Im deleted')
             array.splice(array.indexOf(elem), 1);
         }
     })
-    populateData(`AlltasksArray`, array);
+    populateData(`${item}`, array);
+}
+
+export function deleProject(item, array, tasksAry, project) {
+    if (project.deleted == true) {
+        tasksAry.forEach((elem) => {
+            console.log(elem);
+            if (elem.project == project.name) {
+                elem.deleted = true;
+            }
+        })
+        console.log(tasksAry)
+        populateData(`AlltasksArray`, tasksAry);
+        updateArray(item, array);
+    }
 }
 
 

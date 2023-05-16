@@ -97,7 +97,7 @@ export function ProductivtyMthdsPage() {
     let mthdsStartPage = document.createElement('div');
     let introContainer = document.createElement('div');
     let imageContainer = document.createElement('div');
-    let image = document.createElement('div')
+    let image = document.createElement('img')
 
     document.body.appendChild(mthdsStartPage).setAttribute('id', 'mthd-start-page');
     mthdsStartPage.appendChild(introContainer).setAttribute('id', 'mthds-intro-container');
@@ -120,7 +120,7 @@ export function ProductivtyMthdsPage() {
     Productivity means only focusing on accomplishing important things. The road to being more productive can be long, so do not panic – take one positive step at a time`
 
     imageContainer.appendChild(introTitle).setAttribute('id', 'mthds-intro-title');
-    imageContainer.appendChild(image)
+    imageContainer.appendChild(image).setAttribute('src', './images/Door.jpg')
     introContainer.appendChild(intro).setAttribute('id', 'mthds-intro-p');
     introContainer.appendChild(productivityDiscription).appendChild(productivityQuestion);
     productivityDiscription.appendChild(productivtyAnswer);
