@@ -163,7 +163,6 @@ button{
 
 #left-bar>div:hover, #left-bar>div:focus{
     background-color: #e0e0e03f;
-    /* transform: translate3d(-5px, -5px, -5px); */
 }
 
 
@@ -586,7 +585,6 @@ button{
     justify-content: space-between;
     background-color: #fff;
     width: 100%;
-    /* height: 100%; */
 }
 #start-content{
     width: 30%;
@@ -767,33 +765,11 @@ label>span{
 }
 
 
-
-
 input:invalid:hover, input:invalid:focus{
     border-bottom: 2px solid red;
     border:2px solid red;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-.content{
-    /* width: 40%;
-    min-height: 100%;
-    height:fit-content;
-    background-image: #fff;
-    flex-flow: column;
-    padding: 70px 0; */
-}
 
 
 #strat-content{
@@ -849,8 +825,6 @@ h1{
 #templates-para{
     grid-area: 1 / 1/ span 1/ span 1;
     font-family:'Times New Roman', Times, serif;
-    /* width: 50%;
-    height: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -865,7 +839,6 @@ h1{
     grid-area: 2 / 1/ 2/ 2;
     width: 100%;
     height: 80%;
-    /* background-color: #000049; */
     padding: 30px;
     display: flex;
     flex-flow: column;
@@ -887,13 +860,11 @@ h1{
 }
 
 .instruction:nth-child(2){
-    /* width: 85%; */
     background-color: #ff48ad;
     color: #fff;
 }
 
 .instruction:nth-child(3){
-    /* width: 70%; */
     background-color: #ffd500;
     
 }
@@ -1076,7 +1047,6 @@ h1{
 .temp-icon{
     width: calc(100% / 3.5);
     height: 100%;
-    /* background-color: #000049; */
     border-radius: 50%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -1086,7 +1056,6 @@ h1{
 }
 
 .temp-icon > .icon{
-    /* background-image: url('./icons/bath-solid.svg'); */
     width: 60px;
     height: 60px;
 }
