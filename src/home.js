@@ -36,7 +36,11 @@ function togglingLeftBar() {
     }
 }
 function tasksPage() {
+    let logo = document.getElementById('header-logo')
+    logo.style.display = 'none'
+
     let barIcon = document.getElementById('bar-icon')
+    barIcon.style.display = 'flex'
     barIcon.addEventListener('click', togglingLeftBar)
 
 
@@ -106,9 +110,16 @@ function tasksPage() {
             if (localStorage.getItem('AlltasksArray')) {
                 togglingLeftBar()//onlywork for phones
                 storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
+
+                let tagPage = document.createElement('div');
+                let tagName = document.createElement('h1');
+
                 let container = document.createElement('div');
                 document.getElementById('home-page').textContent = '';
-                document.getElementById('home-page').appendChild(container).setAttribute('id', "tags-page");
+                document.getElementById('home-page').appendChild(tagPage).setAttribute('id', "tags-page");
+                tagPage.appendChild(tagName).setAttribute('id', 'tag-header');
+                tagName.textContent = `${tagsArray[i]} priorty tasks`
+                tagPage.appendChild(container).setAttribute('id', 'tag-container');
                 taskGenerator(container, 'tag', `${tagsArray[i]}`)
             }
         })
@@ -176,7 +187,8 @@ function addProject() {
                 projectsArray.push(new TemplateProject(icon, input.value, '', '', false))
                 populateData('projectsArray', projectsArray);
                 console.log(projectsArray)
-                container.style.display = 'none'
+                container.style.display = 'none';
+                projectGenerator()
             }
         }
     })
@@ -200,7 +212,15 @@ function projectGenerator() {
         storageModule.populateData('projectsArray', projectsArray)
     }
 
+    //delet deleted projects before
     let loclstrgProjects = storageModule.setArrayData('projectsArray');
+    for (let j = 0; j < loclstrgProjects.length; j++) {
+        let allArray = storageModule.setArrayData('AlltasksArray')
+        storageModule.deleProject('projectsArray', loclstrgProjects, allArray, loclstrgProjects[j])
+    }
+
+    //update the projects array
+    loclstrgProjects = storageModule.setArrayData('projectsArray');
     for (let j = 0; j < loclstrgProjects.length; j++) {
         let allArray = storageModule.setArrayData('AlltasksArray')
         storageModule.deleProject('projectsArray', loclstrgProjects, allArray, loclstrgProjects[j])
@@ -229,9 +249,14 @@ function projectGenerator() {
             togglingLeftBar()//onlywork for phones
             console.log(loclstrgProjects[j])
             storageModule.updateArray('projectsArray', setArrayData('projectsArray'))
+            let projectPage = document.createElement('div');
+            let projectsHeader = document.createElement('h1');
             let container = document.createElement('div');
             document.getElementById('home-page').textContent = '';
-            document.getElementById('home-page').appendChild(container).setAttribute('id', "projects-page");
+            document.getElementById('home-page').appendChild(projectPage).setAttribute('id', "projects-page");
+            projectPage.appendChild(projectsHeader);
+            projectsHeader.textContent = `your ${loclstrgProjects[j].name} project tasks`
+            projectPage.appendChild(container).setAttribute('id', 'projects-container')
             taskGenerator(container, 'project', `${loclstrgProjects[j].name}`)
         })
     }
@@ -270,7 +295,7 @@ export function addTask() {
 
     let labelNames = ["task title", 'notes', '', '', 'choose task date']
     let cardElems = [taskTitle, taskNote, taskProject, taskTag, taskDate];
-    let cardsElemsAttrs = [{ "placeholder": "task title", 'required': '' }, { 'maxlength': 120, "placeholder": "insert your notes here" },
+    let cardsElemsAttrs = [{ "placeholder": "task title", 'required': '', 'maxlength': 40 }, { 'maxlength': 120, "placeholder": "insert your notes here" },
     { "name": "projects" }, { "name": "tags" }, { "type": "date", "required": "" }
     ]
 
@@ -421,7 +446,6 @@ export function taskGenerator(container, prop, condetion) {
                     // console.log(element[props[0]])
                     storageModule.editTask(allArray, element, props)
                 })
-                //I put it here not in delete in delet btn, to update array after it's generated
             }
         });
 
@@ -430,7 +454,6 @@ export function taskGenerator(container, prop, condetion) {
     // console.log(allArray)
 }
 
-// let allArray = setArrayData('AlltasksArray');
 
 
 function today() {
@@ -465,46 +488,35 @@ function today() {
         // deleteTask()
         console.log(setArrayData('AlltasksArray'))
     }
-    // populateData('todayTasksArray', todayTasksArray)
 }
 
 
 function thisWeek() {
     if (localStorage.getItem('AlltasksArray')) {
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
-        console.log(setArrayData('AlltasksArray'))
-        let thisWeekPage = document.createElement('div');
-        let thisWeekTitle = document.createElement('p');
-        thisWeekPage.appendChild(thisWeekTitle);
-        thisWeekTitle.textContent = 'this week tasks'
-        let container = document.createElement('div');
-        document.getElementById('home-page').textContent = '';
-        document.getElementById('home-page').appendChild(thisWeekPage).setAttribute('id', 'this-week-page')
-        thisWeekPage.appendChild(container).setAttribute('id', "week-container");
-        togglingLeftBar() //only work in phones 
-        taskGenerator(container, 'section', 'this week')
-        addTask()
+        tasksContainer('this-week-page', "week-container", 'this week tasks', 'this week')
     }
 }
-
-
-
 
 
 function allTasksGanerator() {
     if (localStorage.getItem('AlltasksArray')) {
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
-        let allTasksPage = document.createElement('div');
-        let allTasksTitle = document.createElement('p');
-        allTasksPage.appendChild(allTasksTitle);
-        allTasksTitle.textContent = 'all tasks'
-        let container = document.createElement('div');
-        document.getElementById('home-page').textContent = '';
-        document.getElementById('home-page').appendChild(allTasksPage).setAttribute('id', 'all-tasks-page')
-        allTasksPage.appendChild(container).setAttribute('id', "all-tasks-container");
-        togglingLeftBar() //only work in phones 
-        taskGenerator(container, 'section', 'all tasks')
-        addTask()
+        tasksContainer('all-tasks-page', 'all-tasks-container', 'all tasks', 'all tasks')
     }
+}
+
+function tasksContainer(pageId, containerId, headerName, section) {
+    let page = document.createElement('div');
+    let title = document.createElement('h1');
+    page.appendChild(title);
+    title.textContent = headerName;
+    let container = document.createElement('div');
+    document.getElementById('home-page').textContent = '';
+    document.getElementById('home-page').appendChild(page).setAttribute('id', `${pageId}`)
+    page.appendChild(container).setAttribute('id', `${containerId}`);
+    togglingLeftBar() //only work in phones 
+    taskGenerator(container, 'section', `${section}`)
+    addTask()
 }
 

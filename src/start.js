@@ -8,6 +8,14 @@ export function header() {
     let header = document.createElement('header')
     document.body.appendChild(header).setAttribute('id', 'header')
 
+    let logo = document.createElement('div');
+    header.appendChild(logo).setAttribute('id', 'header-logo')
+    logo.addEventListener('click', function () {
+        document.body.textContent = ''
+        start()
+    })
+
+
     let nav = document.createElement('nav')
 
 
@@ -50,13 +58,20 @@ export function header() {
         profile.appendChild(userPic).setAttribute('id', 'user-pic');
 
         if (window.innerWidth < 1200) {
-            profile.addEventListener('click', () => {
+            profile.addEventListener('click', (e) => {
+                e.stopPropagation()
                 if (nav.style.display === 'none') {
                     console.log('Im here')
                     nav.style.display = 'flex'
                 }
                 else {
                     nav.style.display = 'none';
+                }
+            })
+
+            document.addEventListener('click', function () {
+                if (nav.style.display === 'flex') {
+                    nav.style.display = 'none'
                 }
             })
         }
@@ -66,6 +81,7 @@ export function header() {
     //===================================================================================================================================================
     let barIcon = document.createElement('div');
     header.appendChild(barIcon).setAttribute('id', 'bar-icon');
+    barIcon.style.display = 'none'
 
 
     let homeBtn = document.getElementById('nav-btn1');

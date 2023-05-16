@@ -143,11 +143,15 @@ function templatesSection() {
         templateBerief.textContent = templatesArray[i].discription;
 
         templateCard.addEventListener('click', function () {
-            let projectsArray = setArrayData('projectsArray')
-            document.body.textContent = '';
-            projectsArray.push(new TemplateProject(templatesArray[i].icon, templatesArray[i].name, templatesArray[i].category, templatesArray[i].discription, templatesArray[i].deleted))
-            populateData('projectsArray', projectsArray);
-            home();
+            if (localStorage.getItem('fName')) {
+                let projectsArray = setArrayData('projectsArray')
+                if (projectsArray.filter((elem) => elem.name === templatesArray[i].name).length === 0) {
+                    document.body.textContent = '';
+                    projectsArray.push(new TemplateProject(templatesArray[i].icon, templatesArray[i].name, templatesArray[i].category, templatesArray[i].discription, templatesArray[i].deleted))
+                    populateData('projectsArray', projectsArray);
+                    home();
+                }
+            }
         })
     }
 }

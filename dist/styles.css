@@ -31,6 +31,18 @@ button{
     z-index: 1000;
     background-color: #fff;
     box-shadow: 0.05px 0.05px 8px #00000042;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0 0 10px;
+}
+
+#header-logo{
+    display: none;
+    width: 35px;
+    height: 35px;
+    background-image: url('./icons/circle-check-solid.svg');
+    background-size: cover;
 }
 
 #nav{
@@ -49,9 +61,6 @@ button{
 }
 
 
-#user-profile{
-   /* width: 200px; */
-}
 
 #user-pic{
     width: 30px;
@@ -62,6 +71,7 @@ button{
 }
 
 #user-name{
+    margin: 0 20px ;
     right: 90px;
 }
 
@@ -94,7 +104,7 @@ button{
 
 #user-profile{
     position: absolute;
-    right: 0;
+    right: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,12 +121,12 @@ button{
 
 #home-page{
     width: calc(100% - 300px);
-    height: 100vh;
     min-height: 100vh;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    margin-left: 300px;
 }
 
 
@@ -246,26 +256,26 @@ button{
     background: url('./icons/trash-can-solid.svg');
     background-size: cover;
     position: absolute;
-    right: 40px;
+    right: 15px;
 
 }
 
-#today-section, #this-week-page, #all-tasks-page{
+#today-section, #this-week-page, #all-tasks-page, #projects-page, #tags-page{
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 75px;
+    padding-top: 100px;
     /* filter: blur(20px); */
     filter: h(20px);
 }
 
-#today-section>h1{
+#today-section>h1, #this-week-page>h1, #all-tasks-page>h1, #projects-page> h1, #tags-page>h1{
     position: relative;
     font-size: 2.4rem;
-    padding: 20px;
+    padding-bottom: 20px;
     margin-bottom: 30px;
     border-bottom: 3px solid #dafffd;
 }
@@ -275,10 +285,6 @@ button{
 }
 
 
-#week-container{
-    width: 100%;
-    padding: 10px;
-}
 
 
 
@@ -341,6 +347,7 @@ button{
     border: 1px solid #ffd500;
     margin-top: 10px;
     padding: 5px 10px;
+    outline: none;
     border-radius: 10px;
 }
 
@@ -349,7 +356,9 @@ button{
     height: 40px;
     border-radius: 10px;
     text-align: center;
-    border: 1px solid #fff;
+    background-color: #fff;
+    border: 1px solid #1a1ab3;
+    outline: none;
     cursor: pointer;
 }
 
@@ -361,6 +370,7 @@ button{
     padding: 10px 15px;
     margin-top: 10px;
     resize: none;
+    outline: none;
 }
 
 #add-task-card > #lable-3, #add-task-card > #lable-4{
@@ -371,6 +381,7 @@ button{
     width :150px;
     height: 40px;
     border-radius: 20px;
+    margin-top: 20px;
     font-size: 1.4rem;
     border: none;
     background-color: #ffd500;
@@ -398,8 +409,8 @@ button{
 
 
 
-#today-tasks{
-    width: 40%;
+#today-tasks, #all-tasks-container, #week-container, #projects-container, #tag-container{
+    width: 45%;
     min-height: 70vh;
     display: flex;
     flex-flow: column;
@@ -411,7 +422,7 @@ button{
 
 .task{
     width: 100%;
-    min-height: 100px;
+    min-height: 80px;
     border-radius: 10px;
     padding: 10px 30px;
     background-color: #fff;
@@ -423,6 +434,10 @@ button{
     box-shadow: 1px 1px 4px #7272723b, -1px -1px 4px #5555553b;
     margin-bottom: 20px;
 }
+
+.task-text{
+    font-size: 1rem;
+   }
 
 .task-date{
     font-size: 1rem;
@@ -449,8 +464,8 @@ button{
 
 
 .task-delete{
-    width: 25px;
-    height: 25px;
+    width: 23px;
+    height: 23px;
     background-image: url("./icons/xmark-solid.svg");
     border-radius: 50%;
     cursor: pointer;
@@ -461,8 +476,8 @@ button{
 
 
 .task-edit{
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     background-image: url("./icons/pen-to-square-solid.svg");
     background-size: cover;
     position: absolute;
@@ -502,6 +517,7 @@ button{
 }
 
 .project-btn, .tag-btn{
+    position: relative;
     width: 100%;
     height: 50px;
     display: flex;
@@ -889,7 +905,7 @@ h1{
 .instruction >p{
     width: 90%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .instruction >h3{
@@ -1008,12 +1024,7 @@ h1{
 /*templates container*/
 #templates-header{
     position: relative;
-}
-#templates-header::before{
-    content: url('./icons/circle-check-solid.svg');
-    position: absolute;
-    left: -57px;
-    bottom: -13px;
+    margin-bottom: 20px;
 }
 
 #templates-container{
@@ -1032,7 +1043,7 @@ h1{
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    padding-top: 100px;
+    padding-top: 20px;
 }
 
 
@@ -1117,9 +1128,8 @@ h1{
 }
 
 #footer-content{
-    padding-top: 100px;
+    padding: 100px 0 10px 0;
     width: 40%;
-    height: 100vh;
     min-height: 100vh;
 }
 
@@ -1159,6 +1169,7 @@ h1{
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid #000;
+    padding-bottom: 20px;
 }
 
 #logo{
@@ -1234,11 +1245,10 @@ h1{
 #mthds-intro-container{
     min-height: 55vh;
     width: 50%;
-    padding-top: 100px;
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 
@@ -1347,7 +1357,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #dafbff;
+    background-color: #ffd5006c;
     font-size: 1rem;
 }
 
@@ -1365,14 +1375,18 @@ h1{
 
 
     #bar-icon{
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         background: url('./icons/bars-solid.svg');
         background-size: cover;
         position: absolute;
         left: 15px;
         top :10px;
         cursor: pointer;
+    }
+
+    #header-logo{
+        display: block;
     }
 
     #nav{
@@ -1382,12 +1396,24 @@ h1{
     flex-flow: column;
     justify-content: center;
     position: absolute;
-    top: 53px;
-    right: 0;
+    top: 45px;
+    right: 30px;
     padding: 10px;
-    background: blanchedalmond;
-    height: 250px;
+    background: #fff;
+    box-shadow: 1px 1px 4px #00006369;
+    border-radius: 10px;
+    height: 210px;
     z-index: -1;
+    }
+
+    .nav-btn{
+        width: 100%;
+        margin-right: 0;
+    }
+
+    
+    #user-profile>button{
+        width: 130px;
     }
 
     
@@ -1508,9 +1534,14 @@ input[type="text"], input[type="email"]{
     }
 
     
-   #today-tasks{
-       width: 85%;
+   #today-tasks, #all-tasks-container, #week-container, #projects-container, #tags-page{
+       width: 90%;
    } 
+
+   #today-section>h1, #this-week-page>h1, #all-tasks-page>h1, #projects-page>h1, #tags-page>h1{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
    
    .task-text{
     width: 60%;
@@ -1519,7 +1550,8 @@ input[type="text"], input[type="email"]{
    }
    
    .task{
-    min-height: 79px;
+    font-size: 1rem;
+    min-height: 75px;
    }
 
     #today-section>h1{
@@ -1527,20 +1559,41 @@ input[type="text"], input[type="email"]{
         padding-bottom: 20px;
         margin-bottom: 10px;
     }
+
+    #add-task-card{
+        width: 95%;
+        margin-top: 70px;
+        height: fit-content;
+    }
+
+    #add-task-card > label{
+        padding: 5px 5px;
+        width: 95%;
+        margin-top: 10px;
+    }
+    
     
 
 
     #templates-start{
-        min-height: 100vh;
+        min-height: 70vh;
         grid-template-columns: 1fr;
         grid-template-rows: 1.7fr 4fr;
     }
 
+    #templates-page{
+        padding: 10px 0 20px 0;
+    }
+
+   
+    
+
     #templates-para{
         grid-area: 1/1/span1/span1;
         display: block;
-        font-size: 1.2rem;
-        padding: 100px 50px;
+        font-size: 1.5rem;
+        padding: 10 0px 10px;
+        height: 200px;
     }
 
     #templates-start> img{
@@ -1606,9 +1659,24 @@ input[type="text"], input[type="email"]{
 }
 .template{
     width: 100%;
+    height: 120px;
+}
+
+.temp-icon > .icon{
+    width: 40px;
+    height: 40px;
+    background-size: cover;
 }
 
 
+.template-text > h3{
+    margin-bottom:  10px;
+    font-size: 1.2rem;
+}
+
+.template-text > p{
+    font-size: 0.88rem;
+}
 #add-temp-para{
     width: 95%;
     font-size: 2rem;
