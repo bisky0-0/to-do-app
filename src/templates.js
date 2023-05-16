@@ -24,7 +24,7 @@ new TemplateProject(`./icons/volleyball-solid.svg`, 'sports', 'hobbies', `Playin
 ]
 
 let instructionsArray = ['choose the template you want', 'open projects section in your home page', 'edit, add, remove what you want']
-console.log(templatesArray)
+// console.log(templatesArray)
 
 let footerSectionsData = [['Features', 'how it works', 'pricing', 'templates'],
 ['resources', 'help center', 'productivty methods'], ['about us', 'careers', 'blog']]

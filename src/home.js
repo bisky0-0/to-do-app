@@ -186,7 +186,7 @@ function addProject() {
                 let projectsArray = setArrayData('projectsArray')
                 projectsArray.push(new TemplateProject(icon, input.value, '', '', false))
                 populateData('projectsArray', projectsArray);
-                console.log(projectsArray)
+                // console.log(projectsArray)
                 container.style.display = 'none';
                 projectGenerator()
             }
@@ -247,7 +247,7 @@ function projectGenerator() {
         projectName.textContent = loclstrgProjects[j].name;
         project.addEventListener('click', function () {
             togglingLeftBar()//onlywork for phones
-            console.log(loclstrgProjects[j])
+            // console.log(loclstrgProjects[j])
             storageModule.updateArray('projectsArray', setArrayData('projectsArray'))
             let projectPage = document.createElement('div');
             let projectsHeader = document.createElement('h1');
@@ -358,7 +358,7 @@ export function addTask() {
                 let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'today', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false);
                 checkLocalStorage(newTask)
                 today()
-                console.log(setArrayData('AlltasksArray'))
+                // console.log(setArrayData('AlltasksArray'))
             }
 
 
@@ -422,7 +422,7 @@ export function taskGenerator(container, prop, condetion) {
 
                 if (element.done == true) {
                     task.classList.add('task-done')
-                    console.log(task.classList)
+                    // console.log(task.classList)
                 }
 
                 //check
@@ -485,8 +485,7 @@ function today() {
 
         updateArray('AlltasksArray', setArrayData('AlltasksArray'))
         taskGenerator(todayTasks, 'section', 'today');
-        // deleteTask()
-        console.log(setArrayData('AlltasksArray'))
+        // console.log(setArrayData('AlltasksArray'))
     }
 }
 

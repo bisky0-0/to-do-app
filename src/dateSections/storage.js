@@ -81,9 +81,7 @@ export function setArrayData(arraLocalStorage) {
 
 export function updateArray(item, array) {
     array.forEach((elem) => {
-        // console.log("i'm here")
         if (elem.deleted === true) {
-            // console.log('Im deleted')
             array.splice(array.indexOf(elem), 1);
         }
     })
@@ -93,12 +91,10 @@ export function updateArray(item, array) {
 export function deleProject(item, array, tasksAry, project) {
     if (project.deleted == true) {
         tasksAry.forEach((elem) => {
-            console.log(elem);
             if (elem.project == project.name) {
                 elem.deleted = true;
             }
         })
-        console.log(tasksAry)
         populateData(`AlltasksArray`, tasksAry);
         updateArray(item, array);
     }
@@ -109,7 +105,6 @@ export function editTask(array, element, prop) {
     element.edited = true;
     populateData('AlltasksArray', array)
     let editedArray = setArrayData('AlltasksArray')
-    console.log(editedArray)
     let card = document.getElementById('add-task-card');
     card.classList.add('edit-mode');
     let editableItems = document.getElementsByClassName('editable');
@@ -119,10 +114,8 @@ export function editTask(array, element, prop) {
     document.getElementById("task-set-btn").addEventListener('click', function () {
         if (card.classList.contains('edit-mode')) {
             let editedItemIndex = editedArray.findIndex((e) => e.edited == true);
-            console.log(editedItemIndex)
             for (let i = 0; i < editableItems.length; i++) {
                 editedArray[editedItemIndex][prop[i]] = editableItems[i].value;
-                console.log(editedArray[editedItemIndex][prop[i]])
                 element.edited = false;
                 populateData('AlltasksArray', editedArray);
             }
