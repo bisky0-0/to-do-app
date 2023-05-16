@@ -125,6 +125,7 @@ button{
     position: fixed;
     overflow-y: scroll;
     height: 100vh;
+    top: 0;
     left: 0;
     bottom: 0;
     z-index: 30;
@@ -273,6 +274,11 @@ button{
     font-size: 1.5rem;
 }
 
+
+#week-container{
+    width: 100%;
+    padding: 10px;
+}
 
 
 
