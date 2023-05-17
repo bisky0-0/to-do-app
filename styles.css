@@ -1511,6 +1511,10 @@ input[type="text"], input[type="email"]{
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
+
+#today-date{
+    font-size: 1rem;
+}
    
    .task-text{
     width: 60%;
@@ -1540,7 +1544,31 @@ input[type="text"], input[type="email"]{
         width: 95%;
         margin-top: 10px;
     }
+
+
+#add-project-card{
+    position:absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    top: unset;
+    right:unset;
+    left:unset;
+    display: none;
+    width: 270px;
+    height: 270px;
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 4px #d8d8d8, -1px -1px 4px #dfdfdf;
+}
     
+
+#add-project-card> #set-brjct-btn, #add-project-card> #chosse-temp-btn{
+    width: 120px;
+    font-size: 0.8rem;
+}
     
 
 
