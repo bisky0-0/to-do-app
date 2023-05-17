@@ -83,9 +83,11 @@ function tasksPage() {
         if (!document.getElementById('add-project-card')) {
             addProject()
             document.getElementById('add-project-card').style.display = 'flex'
+            leftBar.style.display = 'none'
         }
         else {
-            document.getElementById('add-project-card').style.display = 'flex'
+            document.getElementById('add-project-card').style.display = 'flex';
+            leftBar.style.display = 'none'
         }
     })
 
@@ -205,7 +207,7 @@ function addProject() {
 
 
 function projectGenerator() {
-
+    document.getElementById("projects-list").textContent = ''
     if (!localStorage.getItem("projectsArray")) {
         projectsArray.push(new TemplateProject(`./icons/briefcase-solid.svg`, 'work', 'work', `Don’t let yesterday take up too much of today. Use work template now!`))
         projectsArray.push(new TemplateProject(`./icons/phone-solid.svg`, 'calls', 'home', `Arrange your phone calls so you don't forget any of them`))
@@ -319,11 +321,18 @@ export function addTask() {
     //projects list
     if (localStorage.getItem('projectsArray')) {
         let projectStorage = setArrayData('projectsArray')
+        let allTasks = setArrayData('AlltasksArray')
         for (let i = 0; i < projectStorage.length; i++) {
-            let option = document.createElement('option')
-            taskProject.appendChild(option);
-            option.textContent = projectStorage[i].name;
-            option.value = projectStorage[i].name
+            deleProject('projectsArray', projectStorage, allTasks, projectStorage[i])
+        }
+        projectStorage = setArrayData('projectsArray')
+        if (projectStorage.filter(elem => elem.deleted === true).length === 0) {
+            for (let i = 0; i < projectStorage.length; i++) {
+                let option = document.createElement('option')
+                taskProject.appendChild(option);
+                option.textContent = projectStorage[i].name;
+                option.value = projectStorage[i].name;
+            }
         }
     }
 
