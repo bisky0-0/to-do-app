@@ -2,12 +2,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-body{
-    /* position: relative; */
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 
 button{
     width: 180px;
@@ -39,8 +36,8 @@ button{
 
 #header-logo{
     display: none;
-    width: 35px;
-    height: 35px;
+    width: 33px;
+    height: 33px;
     background-image: url('./icons/circle-check-solid.svg');
     background-size: cover;
 }
@@ -55,9 +52,9 @@ button{
     justify-content: flex-start;
 }
 
-#nav-btn6{
-    background-color: #000084;
-    color: #fff;
+#nav-btn5{
+    background-color: #dafffd;
+    color: #000084;
 }
 
 
@@ -141,9 +138,10 @@ button{
     z-index: 30;
     width: 300px;
     background-color: #fff;
-    padding: 90px 10px 0 10px;
+    padding: 90px 10px 5px 10px;
     box-shadow: 0.5px 0.5px 4px #c3c5c577;
     perspective-origin: 500px;
+    contain:content;
 }
 
 #left-bar > div{
@@ -188,6 +186,19 @@ button{
 #add-project:hover{
     width: 25px;
     height: 25px;
+}
+
+#left-bar >#log-out-btn{
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    background-image: url('./icons/arrow-right-from-bracket-solid.svg');
+    background-size: cover;
+    border-radius: 0;
+    transform: rotate(180deg);
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 #add-project-card{
@@ -266,7 +277,7 @@ button{
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 100px;
+    padding-top: 80px;
     /* filter: blur(20px); */
     filter: h(20px);
 }
@@ -1342,16 +1353,24 @@ h1{
                              /*===============================================================================*/
 @media (max-width: 1225px) {
 
+    button{
+        width: 120px;
+        font-size: 1rem;
+    }
 
     #bar-icon{
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
         background: url('./icons/bars-solid.svg');
         background-size: cover;
         position: absolute;
-        left: 15px;
+        left: 10px;
         top :10px;
         cursor: pointer;
+    }
+
+    #header{
+        height: 53px;
     }
 
     #header-logo{
@@ -1382,7 +1401,10 @@ h1{
 
     
     #user-profile>button{
-        width: 130px;
+        width: 120px;
+        height: 35px;
+        font-size: 1rem;
+        margin-right: 5px;
     }
 
     
@@ -1495,6 +1517,11 @@ input[type="text"], input[type="email"]{
     #left-bar>#projects-list, #left-bar>#tags-list{
         margin-top: -12px;
     }
+
+    #left-bar >#log-out-btn{
+        position: relative;
+        margin-top: 50px;
+    }
     #home-page{
         margin-left: 0;
         width: 100%;
@@ -1503,8 +1530,9 @@ input[type="text"], input[type="email"]{
     }
 
     
-   #today-tasks, #all-tasks-container, #week-container, #projects-container, #tags-page{
+   #today-tasks, #all-tasks-container, #week-container, #projects-container, #tag-container{
        width: 90%;
+       margin-top: 0;
    } 
 
    #today-section>h1, #this-week-page>h1, #all-tasks-page>h1, #projects-page>h1, #tags-page>h1{
@@ -1521,16 +1549,38 @@ input[type="text"], input[type="email"]{
     overflow-x: scroll;
     font-size: 1rem;
    }
+
+   .task-edit{
+    width: 15px;
+    height: 15px;
+    right: 45px;
+   }
+
+   .task-delete{
+    width: 20px;
+    height: 20px;
+    right: 15px;
+   }
    
    .task{
-    font-size: 1rem;
-    min-height: 75px;
+    font-size: 0.9rem;
+    min-height: 70px;
+    margin-bottom: 17px;
+    padding-right: 10px;
+    box-shadow: 0.3px 0.3px 2px #7272723b, -0.3px -0.3px 2px #5555553b;
    }
 
     #today-section>h1{
-        font-size: 1.4rem;
-        padding-bottom: 20px;
+        font-size: 1.2rem;
+        padding-bottom: 10px;
         margin-bottom: 10px;
+    }
+
+    #add-task{
+        width: 50px;
+        height: 50px;
+        right: 20px;
+        bottom: 20px;
     }
 
     #add-task-card{
@@ -1569,6 +1619,13 @@ input[type="text"], input[type="email"]{
     width: 120px;
     font-size: 0.8rem;
 }
+
+#add-temp-btn, .productvity-Btn{
+    width: 120px;
+    font-size: 1rem;
+}
+
+
     
 
 
@@ -1653,6 +1710,7 @@ input[type="text"], input[type="email"]{
 }
 #logo-container p{
     width: 90%;
+    font-size: 1.3rem;
 }
 .template{
     width: 100%;
@@ -1676,7 +1734,7 @@ input[type="text"], input[type="email"]{
 }
 #add-temp-para{
     width: 95%;
-    font-size: 2rem;
+    font-size: 1.7rem;
     margin-bottom: 10px;
 }
     #footer-pic{
