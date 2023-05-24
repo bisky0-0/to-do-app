@@ -1,4 +1,4 @@
-import { header } from "./start";
+import { header, start } from "./start";
 import { format } from "date-fns";
 import { Task, taskDone, weekCalc, TemplateProject, populateData, setArrayData, deleProject, updateArray } from "./dateSections/storage";
 import * as storageModule from "./dateSections/storage.js";
@@ -60,6 +60,7 @@ function tasksPage() {
     let projectsList = document.createElement('div');
     let tags = document.createElement('div');
     let tagsList = document.createElement('div');
+    let logoutBtn = document.createElement('div');
 
 
     let leftBarItems = [todayTasks, weekTasks, allTasks, projects, projectsList, tags, tagsList]
@@ -100,32 +101,35 @@ function tasksPage() {
 
 
     //tagsList items 
-    for (let i = 0; i < tagsArray.length; i++) {
-        let tagBtn = document.createElement('div')
-        let tagColor = document.createElement('div');
-        let tagItem = document.createElement('div');
-        tagsList.appendChild(tagBtn).setAttribute('class', 'tag-btn')
-        tagBtn.appendChild(tagColor).setAttribute('id', `${tagsArray[i]}`)
-        tagBtn.appendChild(tagItem);
-        tagItem.textContent = tagsArray[i];
-        tagBtn.addEventListener('click', function () {
-            if (localStorage.getItem('AlltasksArray')) {
-                togglingLeftBar()//onlywork for phones
-                storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
+    function tagsGenerator() {
+        for (let i = 0; i < tagsArray.length; i++) {
+            let tagBtn = document.createElement('div')
+            let tagColor = document.createElement('div');
+            let tagItem = document.createElement('div');
+            tagsList.appendChild(tagBtn).setAttribute('class', 'tag-btn')
+            tagBtn.appendChild(tagColor).setAttribute('id', `${tagsArray[i]}`)
+            tagBtn.appendChild(tagItem);
+            tagItem.textContent = tagsArray[i];
+            tagBtn.addEventListener('click', function () {
+                if (localStorage.getItem('AlltasksArray')) {
+                    togglingLeftBar()//onlywork for phones
+                    storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
 
-                let tagPage = document.createElement('div');
-                let tagName = document.createElement('h1');
+                    let tagPage = document.createElement('div');
+                    let tagName = document.createElement('h1');
 
-                let container = document.createElement('div');
-                document.getElementById('home-page').textContent = '';
-                document.getElementById('home-page').appendChild(tagPage).setAttribute('id', "tags-page");
-                tagPage.appendChild(tagName).setAttribute('id', 'tag-header');
-                tagName.textContent = `${tagsArray[i]} priorty tasks`
-                tagPage.appendChild(container).setAttribute('id', 'tag-container');
-                taskGenerator(container, 'tag', `${tagsArray[i]}`)
-            }
-        })
+                    let container = document.createElement('div');
+                    document.getElementById('home-page').textContent = '';
+                    document.getElementById('home-page').appendChild(tagPage).setAttribute('id', "tags-page");
+                    tagPage.appendChild(tagName).setAttribute('id', 'tag-header');
+                    tagName.textContent = `${tagsArray[i]} priorty tasks`
+                    tagPage.appendChild(container).setAttribute('id', 'tag-container');
+                    taskGenerator(tagsGenerator, container, 'tag', `${tagsArray[i]}`)
+                }
+            })
+        }
     }
+    tagsGenerator()
 
 
     //eventlisteners for projects button and tag list button
@@ -143,6 +147,16 @@ function tasksPage() {
     tags.addEventListener('click', function () {
         tagsList.style.display === 'none' ? tagsList.style.display = 'flex' : tagsList.style.display = 'none'
     })
+
+
+    leftBar.appendChild(logoutBtn).setAttribute('id', 'log-out-btn')
+
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem('fName');
+        document.body.textContent = '';
+        start();
+    })
+
 
     // storageModule.setArrayData('todayTasksArray')
 
@@ -259,7 +273,7 @@ function projectGenerator() {
             projectPage.appendChild(projectsHeader);
             projectsHeader.textContent = `your ${loclstrgProjects[j].name} project tasks`
             projectPage.appendChild(container).setAttribute('id', 'projects-container')
-            taskGenerator(container, 'project', `${loclstrgProjects[j].name}`)
+            taskGenerator(projectGenerator, container, 'project', `${loclstrgProjects[j].name}`)
         })
     }
 }
@@ -301,7 +315,7 @@ export function addTask() {
     { "name": "projects" }, { "name": "tags" }, { "type": "date", "required": "" }
     ]
 
-    newTaskCard.appendChild(closeIcon);
+    newTaskCard.appendChild(closeIcon).setAttribute('id', 'card-close-icon');
     for (let i = 0; i < cardElems.length; i++) {
         let lable = document.createElement('label');
         lable.textContent = labelNames[i]
@@ -347,48 +361,50 @@ export function addTask() {
     function addTaskFun(e) {
         if (taskTitle.checkValidity() && taskDate.checkValidity()) {
             e.preventDefault();
-            let currentWeek = weekCalc()
-            let currentDay = format(currentDate, "yyyy-LL-dd")
-            let allArray = setArrayData('AlltasksArray')
+            if (!newTaskCard.classList.contains('edit-mode')) {
+                let currentWeek = weekCalc()
+                let currentDay = format(currentDate, "yyyy-LL-dd")
+                let allArray = setArrayData('AlltasksArray')
 
-            function checkLocalStorage(newTask) {
-                if (localStorage.getItem('AlltasksArray')) {
-                    allArray.push(newTask);
-                    populateData("AlltasksArray", allArray);
+                function checkLocalStorage(newTask) {
+                    if (localStorage.getItem('AlltasksArray')) {
+                        allArray.push(newTask);
+                        populateData("AlltasksArray", allArray);
+                    }
+                    else {
+                        storageModule.AlltasksArray.push(newTask)
+                        populateData("AlltasksArray", storageModule.AlltasksArray)
+                    }
                 }
+
+                if (taskDate.value == currentDay) {
+                    // console.log('today')
+                    let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'today', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false);
+                    checkLocalStorage(newTask)
+                    today()
+                    // console.log(setArrayData('AlltasksArray'))
+                }
+
+
+                else if (currentWeek.includes(taskDate.value)) {
+                    // console.log('this week')
+                    let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false)
+                    checkLocalStorage(newTask)
+                    thisWeek()
+
+                    // console.log(setArrayData('AlltasksArray'))
+                }
+
                 else {
-                    storageModule.AlltasksArray.push(newTask)
-                    populateData("AlltasksArray", storageModule.AlltasksArray)
+                    // console.log('all')
+                    let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks'], taskProject.value, taskTag.value, taskNote.value, false, false)
+                    checkLocalStorage(newTask)
+                    allTasksGanerator()
+                    // console.log(setArrayData('AlltasksArray'))
                 }
+
+                newTaskCard.style.display = 'none'
             }
-
-            if (taskDate.value == currentDay) {
-                // console.log('today')
-                let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'today', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false);
-                checkLocalStorage(newTask)
-                today()
-                // console.log(setArrayData('AlltasksArray'))
-            }
-
-
-            else if (currentWeek.includes(taskDate.value)) {
-                // console.log('this week')
-                let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false)
-                checkLocalStorage(newTask)
-                thisWeek()
-
-                // console.log(setArrayData('AlltasksArray'))
-            }
-
-            else {
-                // console.log('all')
-                let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks'], taskProject.value, taskTag.value, taskNote.value, false, false)
-                checkLocalStorage(newTask)
-                allTasksGanerator()
-                // console.log(setArrayData('AlltasksArray'))
-            }
-
-            newTaskCard.style.display = 'none'
         }
     }
 
@@ -402,7 +418,7 @@ export function addTask() {
 
 
 
-export function taskGenerator(container, prop, condetion) {
+export function taskGenerator(parentFunc, container, prop, condetion) {
     // console.log('hello')
     if (localStorage.getItem('AlltasksArray')) {
         let localStorageArray = setArrayData('AlltasksArray')
@@ -449,11 +465,13 @@ export function taskGenerator(container, prop, condetion) {
                 })
                 //edit 
                 editBtn.addEventListener('click', function (e) {
+                    element.edited = true;
+                    populateData('AlltasksArray', allArray)
                     e.stopPropagation();
                     document.getElementById("add-task-card").style.display = 'flex';
                     let props = ['name', 'note', 'project', 'tag', 'date']
                     // console.log(element[props[0]])
-                    storageModule.editTask(allArray, element, props)
+                    storageModule.editTask(parentFunc, allArray, element, props)
                 })
             }
         });
@@ -493,7 +511,7 @@ function today() {
         togglingLeftBar() //only work in phones 
 
         updateArray('AlltasksArray', setArrayData('AlltasksArray'))
-        taskGenerator(todayTasks, 'section', 'today');
+        taskGenerator(today, todayTasks, 'section', 'today');
         // console.log(setArrayData('AlltasksArray'))
     }
 }
@@ -502,7 +520,7 @@ function today() {
 function thisWeek() {
     if (localStorage.getItem('AlltasksArray')) {
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
-        tasksContainer('this-week-page', "week-container", 'this week tasks', 'this week')
+        tasksContainer(thisWeek, 'this-week-page', "week-container", 'this week tasks', 'this week')
     }
 }
 
@@ -510,11 +528,11 @@ function thisWeek() {
 function allTasksGanerator() {
     if (localStorage.getItem('AlltasksArray')) {
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
-        tasksContainer('all-tasks-page', 'all-tasks-container', 'all tasks', 'all tasks')
+        tasksContainer(allTasksGanerator, 'all-tasks-page', 'all-tasks-container', 'all tasks', 'all tasks')
     }
 }
 
-function tasksContainer(pageId, containerId, headerName, section) {
+function tasksContainer(parentFunc, pageId, containerId, headerName, section) {
     let page = document.createElement('div');
     let title = document.createElement('h1');
     page.appendChild(title);
@@ -524,7 +542,7 @@ function tasksContainer(pageId, containerId, headerName, section) {
     document.getElementById('home-page').appendChild(page).setAttribute('id', `${pageId}`)
     page.appendChild(container).setAttribute('id', `${containerId}`);
     togglingLeftBar() //only work in phones 
-    taskGenerator(container, 'section', `${section}`)
+    taskGenerator(parentFunc, container, 'section', `${section}`)
     addTask()
 }
 

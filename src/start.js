@@ -35,23 +35,21 @@ export function header() {
     let startFreeBtn = document.createElement('button');
     header.appendChild(profile).setAttribute('id', 'user-profile')
     profile.appendChild(logInBtn).setAttribute('id', 'nav-btn5')
-    profile.appendChild(startFreeBtn).setAttribute('id', 'nav-btn6')
     logInBtn.setAttribute('class', 'nav-btn')
-    startFreeBtn.setAttribute('class', 'nav-btn')
 
     logInBtn.textContent = 'log in';
-    startFreeBtn.textContent = 'start for free';
     navGenerator(nav)
     header.appendChild(nav).setAttribute('id', 'nav');
 
+    logInBtn.addEventListener('click', form)
 
     if (!localStorage.getItem('fName')) {
         document.getElementById('nav-btn5').style.display = 'flex';
-        document.getElementById('nav-btn6').style.display = 'flex';
+        // document.getElementById('nav-btn6').style.display = 'flex';
     }
     else {
         document.getElementById('nav-btn5').style.display = 'none';
-        document.getElementById('nav-btn6').style.display = 'none';
+        // document.getElementById('nav-btn6').style.display = 'none';
         let userName = document.createElement('span')
         let userPic = document.createElement('div')
         profile.appendChild(userName).setAttribute('id', 'user-name');
