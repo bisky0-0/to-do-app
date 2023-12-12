@@ -80,10 +80,17 @@ export function setArrayData(arraLocalStorage) {
 
 
 export function updateArray(item, array) {
+    let today = new Date()
     array.forEach((elem) => {
         if (elem.deleted === true) {
             array.splice(array.indexOf(elem), 1);
         }
+
+        //update tasks per day
+        elem.date !== null ?
+            (new Date(elem.date).getDate() < today.getDate()
+                && new Date(elem.date).getMonth() === today.getMonth())
+                ? array.splice(array.indexOf(elem), 1) : false : false;
     })
     populateData(`${item}`, array);
 }

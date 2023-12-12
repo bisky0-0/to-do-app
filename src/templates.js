@@ -1,6 +1,7 @@
 import { header } from "./start";
 import { TemplateProject, populateData, setArrayData } from "./dateSections/storage";
 import { home } from "./home";
+import { ProductivtyMthdsPage } from "./productivityMthds";
 
 let templatesArray = [new TemplateProject(`./icons/bath-solid.svg`, 'Personal hygiene', 'home', `If you don't smell good, then you don't look good`, false),
 new TemplateProject(`./icons/book-open-reader-solid.svg`, 'reading', 'hobbies', `Carry your book(s) everywhere. There's always an opportunity to read`, false),
@@ -47,7 +48,7 @@ function templatesStart() {
 
     let firstSection = document.createElement('div');
     templatesStartPage.appendChild(firstSection).setAttribute('id', 'templates-para');
-    firstSection.textContent = `start your next project\n with doit templates`;
+    firstSection.textContent = `start your next project\n with DOIt templates`;
 
     let templatesInstructions = document.createElement('div');
     templatesStartPage.appendChild(templatesInstructions).setAttribute('id', 'template-instructions');
@@ -149,7 +150,7 @@ function templatesSection() {
                     document.body.textContent = '';
                     projectsArray.push(new TemplateProject(templatesArray[i].icon, templatesArray[i].name, templatesArray[i].category, templatesArray[i].discription, templatesArray[i].deleted))
                     populateData('projectsArray', projectsArray);
-                    home();
+                    home()
                 }
             }
         })
@@ -182,7 +183,12 @@ function templatesFooter() {
 
     let productivtyBtn = document.createElement('button');
     footerLogo.appendChild(productivtyBtn).setAttribute('class', 'productvity-Btn')
-    productivtyBtn.textContent = `helpful tips`
+    productivtyBtn.textContent = `helpful tips`;
+
+    productivtyBtn.addEventListener('click', () => {
+        document.body.textContent = '';
+        ProductivtyMthdsPage()
+    })
 
     let contentSecsContainer = document.createElement('div');
     footerContent.appendChild(contentSecsContainer).setAttribute('id', 'footer-sec-container');

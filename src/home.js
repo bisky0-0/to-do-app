@@ -35,7 +35,7 @@ function togglingLeftBar() {
         }
     }
 }
-function tasksPage() {
+export function tasksPage() {
     let logo = document.getElementById('header-logo')
     logo.style.display = 'none'
 
@@ -60,7 +60,7 @@ function tasksPage() {
     let projectsList = document.createElement('div');
     let tags = document.createElement('div');
     let tagsList = document.createElement('div');
-    let logoutBtn = document.createElement('div');
+
 
 
     let leftBarItems = [todayTasks, weekTasks, allTasks, projects, projectsList, tags, tagsList]
@@ -83,12 +83,12 @@ function tasksPage() {
         e.stopPropagation()
         if (!document.getElementById('add-project-card')) {
             addProject()
-            document.getElementById('add-project-card').style.display = 'flex'
-            leftBar.style.display = 'none'
+            document.getElementById('add-project-card').style.display = 'flex';
+            window.innerWidth < 1225 ? leftBar.style.display = 'none' : false
         }
         else {
             document.getElementById('add-project-card').style.display = 'flex';
-            leftBar.style.display = 'none'
+            window.innerWidth < 1225 ? leftBar.style.display = 'none' : false
         }
     })
 
@@ -125,6 +125,7 @@ function tasksPage() {
                     tagName.textContent = `${tagsArray[i]} priorty tasks`
                     tagPage.appendChild(container).setAttribute('id', 'tag-container');
                     taskGenerator(tagsGenerator, container, 'tag', `${tagsArray[i]}`)
+                    addTask()
                 }
             })
         }
@@ -133,7 +134,7 @@ function tasksPage() {
 
 
     //eventlisteners for projects button and tag list button
-    projects.addEventListener('click', function () {
+    projects.addEventListener('click', function (e) {
         if (projectsList.style.display === 'none') {
             projectsList.style.display = 'flex';
             projectsList.textContent = '';
@@ -144,18 +145,21 @@ function tasksPage() {
         }
     })
 
-    tags.addEventListener('click', function () {
+    tags.addEventListener('click', function (e) {
         tagsList.style.display === 'none' ? tagsList.style.display = 'flex' : tagsList.style.display = 'none'
     })
 
 
-    leftBar.appendChild(logoutBtn).setAttribute('id', 'log-out-btn')
+    if (window.innerWidth > 1225) {
+        let logoutBtn = document.createElement('div');
+        leftBar.appendChild(logoutBtn).setAttribute('id', 'log-out-btn')
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('fName');
+            document.body.textContent = '';
+            start();
+        })
+    }
 
-    logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('fName');
-        document.body.textContent = '';
-        start();
-    })
 
 
     // storageModule.setArrayData('todayTasksArray')
@@ -186,7 +190,7 @@ function addProject() {
     container.appendChild(closeBtn).setAttribute('id', 'close-btn-project-card')
 
 
-    set.textContent = 'add project'
+    set.textContent = 'add'
     orP.textContent = 'or';
     templatesBtn.textContent = 'choose project';
 
@@ -220,7 +224,7 @@ function addProject() {
 }
 
 
-function projectGenerator() {
+export function projectGenerator() {
     document.getElementById("projects-list").textContent = ''
     if (!localStorage.getItem("projectsArray")) {
         projectsArray.push(new TemplateProject(`./icons/briefcase-solid.svg`, 'work', 'work', `Don’t let yesterday take up too much of today. Use work template now!`))
@@ -271,9 +275,10 @@ function projectGenerator() {
             document.getElementById('home-page').textContent = '';
             document.getElementById('home-page').appendChild(projectPage).setAttribute('id', "projects-page");
             projectPage.appendChild(projectsHeader);
-            projectsHeader.textContent = `your ${loclstrgProjects[j].name} project tasks`
+            projectsHeader.textContent = `your ${loclstrgProjects[j].name} tasks`
             projectPage.appendChild(container).setAttribute('id', 'projects-container')
             taskGenerator(projectGenerator, container, 'project', `${loclstrgProjects[j].name}`)
+            addTask()
         })
     }
 }

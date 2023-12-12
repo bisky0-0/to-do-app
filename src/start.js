@@ -55,11 +55,25 @@ export function header() {
         profile.appendChild(userName).setAttribute('id', 'user-name');
         profile.appendChild(userPic).setAttribute('id', 'user-pic');
 
-        if (window.innerWidth < 1200) {
+        if (window.innerWidth < 1225) {
+
+
+            let logoutBtn = document.createElement('div');
+            nav.appendChild(logoutBtn).setAttribute('id', 'log-out-btn')
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('fName');
+                document.body.textContent = '';
+                start();
+            })
+
+
             profile.addEventListener('click', (e) => {
                 e.stopPropagation()
                 if (nav.style.display === 'none') {
-                    console.log('Im here')
+                    for (const btn of nav.children) {
+                        btn.textContent = ''
+                    }
+
                     nav.style.display = 'flex'
                 }
                 else {
