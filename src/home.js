@@ -100,6 +100,11 @@ export function tasksPage() {
     projectsList.setAttribute('id', 'projects-list')
 
 
+    // storageModule.updateArray('AlltasksArray', localStorage.getItem('AlltasksArray'))
+
+    // console.log(localStorage.getItem('AlltasksArray'))
+
+
     //tagsList items 
     function tagsGenerator() {
         for (let i = 0; i < tagsArray.length; i++) {

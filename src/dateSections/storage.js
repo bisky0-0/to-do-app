@@ -86,11 +86,15 @@ export function updateArray(item, array) {
             array.splice(array.indexOf(elem), 1);
         }
 
-        //update tasks per day
+        //update tasks per day'
+        console.log(new Date(elem.date).getFullYear() < today.getFullYear(), new Date(elem.date).getFullYear() === today.getFullYear(), new Date(elem.date).getMonth() < today.getMonth(), new Date(elem.date).getMonth() === today.getMonth(), new Date(elem.date).getDate() < today.getDate())
         elem.date !== null ?
-            (new Date(elem.date).getDate() < today.getDate()
-                && new Date(elem.date).getMonth() === today.getMonth())
-                ? array.splice(array.indexOf(elem), 1) : false : false;
+            new Date(elem.date).getFullYear() < today.getFullYear() ? array.splice(array.indexOf(elem), 1) :
+                new Date(elem.date).getFullYear() === today.getFullYear() ?
+                    new Date(elem.date).getMonth() < today.getMonth() ? array.splice(array.indexOf(elem), 1) :
+                        new Date(elem.date).getMonth() === today.getMonth() ?
+                            new Date(elem.date).getDate() < today.getDate() ?
+                                array.splice(array.indexOf(elem), 1) : null : null : null : null
     })
     populateData(`${item}`, array);
 }
