@@ -9,5 +9,4 @@
 - Data saved to local storage.
 - sort by date
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://github.com/bisky0-0/to-do-app/assets/88213094/8617f653-f10b-4d9d-b4a6-21d6acd04f16)
 
