@@ -514,6 +514,7 @@ function today() {
     todayDate.textContent = format(currentDate, 'iii-LLL-dd');
 
     if (localStorage.getItem('AlltasksArray')) {
+        document.getElementById('left-bar').classList.remove('closed')
         togglingLeftBar() //only work in phones 
 
         updateArray('AlltasksArray', setArrayData('AlltasksArray'))

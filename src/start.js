@@ -127,7 +127,7 @@ export function start() {
         let startPage = document.createElement('div')
         let content = document.createElement('div');
         let h1 = document.createElement('h1');
-        let para = document.createElement('p')
+        // let para = document.createElement('p')
         let picContainer = document.createElement('img');
         let startBtn = document.createElement('button');
 
@@ -137,15 +137,15 @@ export function start() {
         content.classList.add('content');
 
         content.appendChild(h1)
-        content.appendChild(para)
+        // content.appendChild(para)
 
         h1.textContent = 'welcome to DoIt';
-        para.textContent = `You can't keep today's hour for tomorrow – we all 
-        know that, but still tend to procrastinate. Benjamin Franklin warns that
-         time is a scarce resource, and if it's wasted, it cannot be recovered later. 
-         This is why mindful planning and work on productivity are so important, DoIt will help
-         you to manage your time, get started now!
-        `
+        // para.textContent = `You can't keep today's hour for tomorrow – we all 
+        // know that, but still tend to procrastinate. Benjamin Franklin warns that
+        //  time is a scarce resource, and if it's wasted, it cannot be recovered later. 
+        //  This is why mindful planning and work on productivity are so important, DoIt will help
+        //  you to manage your time, get started now!
+        // `
 
         startPage.appendChild(picContainer).setAttribute('src', './images/6272295.jpg')
 
