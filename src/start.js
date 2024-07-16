@@ -57,7 +57,6 @@ export function header() {
 
         if (window.innerWidth < 1225) {
 
-
             let logoutBtn = document.createElement('div');
             nav.appendChild(logoutBtn).setAttribute('id', 'log-out-btn')
             logoutBtn.addEventListener('click', () => {
@@ -67,6 +66,7 @@ export function header() {
             })
 
 
+            nav.style.display = 'none'
             profile.addEventListener('click', (e) => {
                 e.stopPropagation()
                 if (nav.style.display === 'none') {

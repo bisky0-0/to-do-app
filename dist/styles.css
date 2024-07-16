@@ -244,17 +244,34 @@ button{
     flex-flow: column;
     align-items: center;
     justify-content: space-around;
-    top: 300px;
-    right: calc(100vw/ 2);
-    left: calc(100vw/ 2);
+    top: 360px;
+    left: 306px;
     display: none;
     width: 330px;
-    height: 300px;
-    background-color: #a9f6ff2b;
+    height: 200px;
+    background-color: #fff;
     padding: 40px 15px;
     border-radius: 20px;
-    box-shadow: 1px 1px 4px #d8d8d8, -1px -1px 4px #dfdfdf;
+    box-shadow: 1px 1px 20px #9ef1fe, -1px -1px 20px #a6eaf6;
 }
+
+#add-project-card> #set-brjct-btn, #add-project-card> #chosse-temp-btn{
+    width: 120px;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 20px;
+}
+
+#set-brjct-btn{
+    left: 10px;
+    background-color: #000063;
+}
+
+#chosse-temp-btn{
+    right: 10px;
+    background-color: #ff48ad;
+}
+
 
 #add-project-card > label{
     width: 100%;
@@ -263,7 +280,7 @@ button{
     flex-flow: column;
     align-items: flex-start;
     justify-content: space-around;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 #add-project-card > label>input{
@@ -274,15 +291,7 @@ button{
     outline: none;
     padding: 5px 10px;
     font-size: 1rem;
-}
-
-#add-project-card> #set-brjct-btn{
-    background-color: #000063;
-    /* margin-bottom: 40px; */
-}
-
-#add-project-card> #chosse-temp-btn{
-    background-color: #ff48ad;
+    margin-top: 10px;
 }
 
 #close-btn-project-card{
@@ -353,24 +362,33 @@ button{
     transform: rotate(180deg);
 }
 
-#add-task-card{
+.add-task-card{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
-    display: none;
+    /* display: none; */
     position: absolute;
     width: 500px;
     height: 580px;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 1px 1px 7px #00000052;
-    position: absolute;
     padding: 20px 0;
+    transform: translateY(50%) scale(.1);
+    transition: all .4s ease-in-out;
+    visibility: hidden;
+    top: -70%;
+}
+
+.add-card-visible{
+    visibility: visible;
+    top: 50%;
+    transform: translateY(-50%) scale(1);
 }
 
 
-#add-task-card > div{
+.add-task-card > div{
     position: absolute;
     width: 30px;
     height: 30px;
@@ -381,7 +399,7 @@ button{
     top: 10px;
     cursor: pointer;
 }
-#add-task-card > label{
+.add-task-card > label{
     display: flex;
     flex-flow: column;
     width: 95%;
@@ -390,7 +408,7 @@ button{
     justify-content: space-around;
 }
 
-#add-task-card > label > input{
+.add-task-card > label > input{
     width: 100%;
     height: 40px;
     border: 1px solid #ffd500;
@@ -411,7 +429,7 @@ button{
     cursor: pointer;
 }
 
-#add-task-card > label > textarea{
+.add-task-card > label > textarea{
     width: 100%;
     height: 90px;
     border-radius: 10px;
@@ -422,7 +440,7 @@ button{
     outline: none;
 }
 
-#add-task-card > #lable-3, #add-task-card > #lable-4{
+.add-task-card > #lable-3, .add-task-card > #lable-4{
     width: 40%;
 }
 
@@ -1304,8 +1322,8 @@ h1{
     width: 80%;
     text-align: justify;
     font-size: 1.3rem;
-    padding: 50px 20px;
-    background-color: #ffd500;
+    padding: 30px 20px;
+    background-color: #ffe561;
     border-radius: 10px;
     border-bottom: 4px solid #ffd500;
     border-top: 4px solid #ffd500;
@@ -1329,7 +1347,7 @@ h1{
 }
 
 #mthds-intro-container>div> p{
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-align: justify;
 }
 
@@ -1377,6 +1395,7 @@ h1{
     text-align: center;
     padding-bottom: 20px ;
     border-bottom: 5px solid;
+    font-size: 1.5rem;
 }
 
 #mthds-container{
@@ -1385,7 +1404,7 @@ h1{
 }
 
 #mthds-container h3{
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     margin: 80px 0 10px 0;
     color: #00005a;
 }
@@ -1394,7 +1413,7 @@ h1{
     border-bottom: 3px solid #ffd500;
     padding-bottom: 10px;
     color: #000000;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 #mthds-footer{
@@ -1405,7 +1424,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffd5006c;
+    background-color: #ffffa1;
     font-size: 1rem;
 }
 
@@ -1461,6 +1480,7 @@ h1{
     border-radius: 10px;
     height: 210px;
     z-index: -1;
+    transition: all .4s ease-in-out;
     }
 
     .nav-btn{
@@ -1700,44 +1720,27 @@ input[type="text"], input[type="email"]{
         bottom: 20px;
     }
 
-    #add-task-card{
+    .add-task-card{
         width: 80%;
         margin-top: 70px;
         height: fit-content;
     }
 
-    #add-task-card > label{
+    .add-task-card > label{
         padding: 5px 5px;
         width: 95%;
         margin-top: 10px;
+        font-size: 0.8rem;
     }
 
+    #task-set-btn{
+        font-size: 1rem;
+    }
 
-
-#add-project-card {
-    position: absolute;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: space-around;
-    top: unset;
-    right: unset;
-    left: unset;
-    display: none;
-    width: 79%;
-    height: 270px;
-    background-color: #ffffff;
-    padding: 33px 10px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 4px #d8d8d8, -1px -1px 4px #e9e9e9;
-}
-
-    
-
-#add-project-card> #set-brjct-btn, #add-project-card> #chosse-temp-btn{
-    width: 120px;
-    font-size: 0.8rem;
-}
+    #add-project-card {
+        position: absolute;
+        left: calc(70vw/2);
+    }
 
 #add-temp-btn, .productvity-Btn{
     width: 120px;
@@ -1764,7 +1767,7 @@ input[type="text"], input[type="email"]{
     #templates-para{
         grid-area: 1/1/span1/span1;
         display: block;
-        font-size: 1.5rem;
+        font-size: 1rem;
         padding: 10 0px 10px;
         height: 200px;
         z-index: 1;
@@ -1821,7 +1824,7 @@ input[type="text"], input[type="email"]{
 }
 
 #footer-content >p{
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .contact{
@@ -1876,7 +1879,7 @@ input[type="text"], input[type="email"]{
     }
 #mthds-intro-container >p{
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 20px;
 }
 
@@ -1914,4 +1917,43 @@ input[type="text"], input[type="email"]{
     min-height: 12vh;
 }
 
+}
+
+@media (max-width: 725px){
+
+
+#add-project-card {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    top: unset;
+    right: unset;
+    left: unset;
+    display: none;
+    width: 79%;
+    height: 200px;
+    background-color: #ffffff;
+    padding: 33px 10px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px #9ff7ff, -1px -1px 10px #95e4ff;
+}
+
+    
+
+#add-project-card> #set-brjct-btn, #add-project-card> #chosse-temp-btn{
+    width: 120px;
+    font-size: 0.8rem;
+    position: absolute;
+    bottom: 20px;
+}
+
+#set-brjct-btn{
+    left: 10px;
+}
+
+#chosse-temp-btn{
+    right: 10px;
+}
 }

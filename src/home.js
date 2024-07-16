@@ -134,6 +134,8 @@ export function tasksPage() {
     tagsGenerator()
 
 
+    //setting priject list displayed none to hide it in the first load
+    projectsList.style.display = 'none'
     //eventlisteners for projects button and tag list button
     projects.addEventListener('click', function (e) {
         if (projectsList.style.display === 'none') {
@@ -146,6 +148,8 @@ export function tasksPage() {
         }
     })
 
+    //setting tags list displayed none to hide it in the first load
+    tagsList.style.display = 'none'
     tags.addEventListener('click', function (e) {
         tagsList.style.display === 'none' ? tagsList.style.display = 'flex' : tagsList.style.display = 'none'
     })
@@ -186,13 +190,11 @@ function addProject() {
     document.getElementById('home-page').appendChild(container).setAttribute('id', 'add-project-card');
     container.appendChild(label);
     container.appendChild(set).setAttribute('id', 'set-brjct-btn');
-    container.appendChild(orP)
     container.appendChild(templatesBtn).setAttribute('id', 'chosse-temp-btn')
     container.appendChild(closeBtn).setAttribute('id', 'close-btn-project-card')
 
 
     set.textContent = 'add'
-    orP.textContent = 'or';
     templatesBtn.textContent = 'choose project';
 
     let icon = './icons/circle-dot-regular.svg'
@@ -290,12 +292,13 @@ export function addTask() {
     let addTaskBtn = document.createElement('div');
     let newTaskCard = document.createElement('form');
     document.getElementById("home-page").appendChild(addTaskBtn).setAttribute('id', 'add-task');
-    document.getElementById("home-page").appendChild(newTaskCard).setAttribute('id', 'add-task-card');
+    document.getElementById("home-page").appendChild(newTaskCard).setAttribute('class', 'add-task-card');
+    newTaskCard.setAttribute('id', 'add-task-card');
 
 
     addTaskBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        newTaskCard.style.display = 'flex';
+        newTaskCard.classList.add('add-card-visible');
     });
 
     newTaskCard.addEventListener('click', function (e) {
@@ -312,7 +315,7 @@ export function addTask() {
     let setBtn = document.createElement('button');
 
     closeIcon.addEventListener('click', () => {
-        newTaskCard.style.display = 'none';
+        newTaskCard.classList.remove('add-card-visible')
     })
 
     let labelNames = ["task title", 'notes', '', '', 'choose task date']
@@ -397,7 +400,6 @@ export function addTask() {
                     let newTask = new Task(taskTitle.value, taskDate.value, ['all tasks', 'this week'], taskProject.value, taskTag.value, taskNote.value, false, false, false)
                     checkLocalStorage(newTask)
                     thisWeek()
-
                     // console.log(setArrayData('AlltasksArray'))
                 }
 
@@ -409,7 +411,7 @@ export function addTask() {
                     // console.log(setArrayData('AlltasksArray'))
                 }
 
-                newTaskCard.style.display = 'none'
+                newTaskCard.classList.remove("add-card-visible")
             }
         }
     }
@@ -474,7 +476,7 @@ export function taskGenerator(parentFunc, container, prop, condetion) {
                     element.edited = true;
                     populateData('AlltasksArray', allArray)
                     e.stopPropagation();
-                    document.getElementById("add-task-card").style.display = 'flex';
+                    document.getElementById("add-task-card").classList.add('add-card-visible');
                     let props = ['name', 'note', 'project', 'tag', 'date']
                     // console.log(element[props[0]])
                     storageModule.editTask(parentFunc, allArray, element, props)
@@ -526,6 +528,8 @@ function today() {
 
 function thisWeek() {
     if (localStorage.getItem('AlltasksArray')) {
+        document.getElementById('left-bar').classList.remove('closed')
+        togglingLeftBar() //only work in phones 
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
         tasksContainer(thisWeek, 'this-week-page', "week-container", 'this week tasks', 'this week')
     }
@@ -534,6 +538,8 @@ function thisWeek() {
 
 function allTasksGanerator() {
     if (localStorage.getItem('AlltasksArray')) {
+        document.getElementById('left-bar').classList.remove('closed')
+        togglingLeftBar() //only work in phones 
         storageModule.updateArray('AlltasksArray', setArrayData('AlltasksArray'))
         tasksContainer(allTasksGanerator, 'all-tasks-page', 'all-tasks-container', 'all tasks', 'all tasks')
     }
@@ -548,7 +554,6 @@ function tasksContainer(parentFunc, pageId, containerId, headerName, section) {
     document.getElementById('home-page').textContent = '';
     document.getElementById('home-page').appendChild(page).setAttribute('id', `${pageId}`)
     page.appendChild(container).setAttribute('id', `${containerId}`);
-    togglingLeftBar() //only work in phones 
     taskGenerator(parentFunc, container, 'section', `${section}`)
     addTask()
 }
